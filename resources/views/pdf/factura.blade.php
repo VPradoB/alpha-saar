@@ -102,7 +102,7 @@
 <tr>
 <td colspan="3" ></td>
 <td colspan="2" >
-<strong>IVA</strong> ({{$traductor->format(($factura->iva>0)?( ($factura->iva/$factura->subtotal)* 100 ):0)}}%)
+<strong>IVA</strong> (16.00%)
 </td>
 <td colspan="5" style="text-align: right;">
     <strong>Bs. <span style="font-family: Courier, monospace; font-size: 12; font-weight: bold;"> {{$traductor->format($factura->iva)}} </span> </strong>
