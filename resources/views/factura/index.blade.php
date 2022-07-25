@@ -1,4 +1,4 @@
-﻿@extends('app')
+@extends('app')
 @section('content')
 <ol class="breadcrumb">
 	<li><a href="{{url('principal')}}">Inicio</a></li>
