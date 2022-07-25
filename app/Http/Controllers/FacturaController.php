@@ -201,7 +201,8 @@ class FacturaController extends Controller {
     public function main($moduloNombre){
         $moduloNombre     =($moduloNombre=="Todos")?"%":$moduloNombre;
         $modulos          =$this->getModulos($moduloNombre);
-        return view('factura.main', compact('modulos', 'facturasManuales'));
+        $anuladas         = Factura::onlyTrashed()->get();
+        return view('factura.main', compact('modulos', 'facturasManuales', 'anuladas'));
     }
 
 	/**
@@ -269,7 +270,7 @@ class FacturaController extends Controller {
         $modulo=\App\Modulo::where("nombre","like",$moduloNombre)->where('aeropuerto_id', session('aeropuerto')->id)->first();
 
 
-        if($estado == 'A'){
+        if($moduloNombre == 'ANULADAS'){
             $modulo->facturas=\App\Factura::onlyTrashed()
                                             ->select("facturas.*","clientes.nombre as clienteNombre")
                                             ->join('clientes','clientes.id' , '=', 'facturas.cliente_id')
