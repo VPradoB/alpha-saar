@@ -189,8 +189,12 @@
                             @foreach($cobro->pagos as $pago)
                                 <tr class="pago" data-object="{{$pago->toJson()}}">
                                     <td>{{$pago->fecha}}</td>
-                                    <td>{{$pago->banco->nombre}}</td>
-                                    <td>{{$pago->cuenta->descripcion}}</td>
+									@if($pago->banco)
+                                    	<td>{{$pago->banco->nombre}}</td>
+									@endif
+                                    @if($pago->cuenta)
+									<td>{{$pago->cuenta->descripcion}}</td>
+									@endif
                                     <td>{{$pago->tipo}}</td>
                                     <td>{{$pago->ncomprobante}}</td>
                                     <td>{{$traductor->format($pago->monto)}}</td>
