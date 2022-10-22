@@ -1,4 +1,4 @@
-﻿@extends('app')
+@extends('app')
 @section('content')
 <ol class="breadcrumb">
 	<li><a href="{{url('principal')}}">Inicio</a></li>
@@ -19,7 +19,7 @@
 		<div class="box box-primary">
 			<div class="box-header">
 				<h3 class="box-title">{{$modulo->nombre}}</h3>
-				<span class="pull-right"><a class="btn btn-primary"  href="{{ URL::to('facturacion/'.$modulo->nombre.'/factura') }}">Gestionar</a></span>
+				<span class="pull-right"><a class="btn btn-primary" href="{{ URL::to('facturacion/'.$modulo->nombre.'/factura') }}">Gestionar</a></span>
 			</div><!-- /.box-header -->
 			<!-- form start -->
 			<div class="box-body">
@@ -57,7 +57,46 @@
 
 	@endforeach
 
-	
+	<!-- FACTURAS ANULADAS -->
+	<div class="col-md-12">
+		<!-- general form elements -->
+		<div class="box box-primary">
+			<div class="box-header">
+				<h3 class="box-title">ANULADAS</h3>
+				<span class="pull-right"><a class="btn btn-primary" href="{{ URL::to('facturacion/ANULADAS/factura') }}">Gestionar</a></span>
+			</div><!-- /.box-header -->
+			<!-- form start -->
+			<div class="box-body">
+				<table class="table text-center">
+					<thead class="bg-primary">
+						<th># Factura</th>
+						<th># Control</th>
+						<th>Cliente</th>
+						<th>Descripción</th>
+						<th>Fecha Emisión</th>
+						<th>Monto documento</th>
+					</thead>
+					<tbody>
+						@if($anuladas->count() == 0)
+						<tr>
+							<td colspan="5">No hay facturas registradas en este módulo</td>
+						</tr>
+						@endif
+						@foreach($anuladas as $factura)
+						<tr>
+							<td>{{$factura->nFacturaPrefix}}-{{$factura->nFactura}}</td>
+							<td>{{$factura->nControlPrefix}}-{{$factura->nControl}}</td>
+							<td style="text-align: left">{{$factura->cliente->nombre}}</td>
+							<td style="text-align: left">{{$factura->descripcion}}</td>
+							<td>{{$factura->fecha}}</td>
+							<td style="text-align: right">{{$traductor->format($factura->total)}}</td>
+						</tr>
+						@endforeach
+					</tbody>
+				</table>
+			</div><!-- /.box-body -->
+		</div><!-- /.box -->
+	</div>
 
 </div>
 

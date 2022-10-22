@@ -201,7 +201,7 @@ class FacturaController extends Controller {
     public function main($moduloNombre){
         $moduloNombre     =($moduloNombre=="Todos")?"%":$moduloNombre;
         $modulos          =$this->getModulos($moduloNombre);
-        $anuladas         = Factura::onlyTrashed()->get();
+        $anuladas         = Factura::onlyTrashed()->orderBy('id', 'DESC')->limit(15)->get();
         return view('factura.main', compact('modulos', 'facturasManuales', 'anuladas'));
     }
 
@@ -271,6 +271,7 @@ class FacturaController extends Controller {
 
 
         if($moduloNombre == 'ANULADAS'){
+            $modulo = \App\Modulo::first();
             $modulo->facturas=\App\Factura::onlyTrashed()
                                             ->select("facturas.*","clientes.nombre as clienteNombre")
                                             ->join('clientes','clientes.id' , '=', 'facturas.cliente_id')
@@ -451,6 +452,7 @@ class FacturaController extends Controller {
 	 */
 	public function show($moduloId,Factura $factura)
 	{
+	$modulo = \App\Modulo::where('nombre', $moduloId)->first();
         $nFacturaPrefixManual = \App\Modulo::where('nombre', $moduloId)->first()->nFacturaPrefixManual;
         if($factura->nFacturaPrefix == $nFacturaPrefixManual){
 
@@ -460,7 +462,6 @@ class FacturaController extends Controller {
             // $conceptos  = \App\Concepto::where('aeropuerto_id', $aeropuerto)->get();
             $nControlPrefix = \App\Modulo::where('nombre', $moduloId)->first()->nFacturaPrefixManual;
             $nFacturaPrefix = $nFacturaPrefixManual;
-            $modulo= \App\Modulo::where('nombre', $moduloId)->where('aeropuerto_id', session('aeropuerto')->id)->first();
             $modulo_id = $modulo->id;
 
             $diasVencimientoCred = \App\OtrasConfiguraciones::where('aeropuerto_id', session('aeropuerto')->id)->first()->diasVencimientoCred;
