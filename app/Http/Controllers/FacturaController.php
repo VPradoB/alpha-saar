@@ -686,7 +686,7 @@ class FacturaController extends Controller {
         $moduloExoneradas = Modulo::where('nombre', 'EXONERADAS')
             ->where('aeropuerto_id', session('aeropuerto')->id)->first();
         $factura->estado = 'E';
-        $factura->modulo_id = $moduloExoneradas->id;
+        $factura->modulo = $moduloExoneradas;
         $factura->push();
         return redirect('/facturacion/'. $modulo->nombre .'/factura');
     }
