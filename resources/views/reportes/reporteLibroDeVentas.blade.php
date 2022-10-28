@@ -104,7 +104,7 @@
 												<td   style="vertical-align: middle; width: 70px" class="text-center" align="center" >{{$facturaCobrada->nControlPrefix}}-{{$facturaCobrada->nControl}}</td>
 												<td   style="vertical-align: middle; width: 70px" class="text-center" align="center" > </td>
 												<td   style="vertical-align: middle; width: 70px" class="text-center" align="center" > </td>
-												<td   style="vertical-align: middle; width: 70px" class="text-center" align="center" >{{ ($facturaCobrada->deleted_at == null)? $factura->estado == 'E' ? '02-exo': '01-reg' :'03-anu' }}</td>
+												<td   style="vertical-align: middle; width: 70px" class="text-center" align="center" >{{ ($facturaCobrada->deleted_at == null)? $facturaCobrada->estado == 'E' ? '02-exo': '01-reg' :'03-anu' }}</td>
 												<td   style="vertical-align: middle; width: 70px" class="text-right" align="right"   > </td>
 												<td   style="vertical-align: middle; width: 100px" class="text-right totalVentasConIva" align="right"></td>
 												<td   style="vertical-align: middle; width: 100px" class="text-right ventasNoGravadas" align="right"></td>
