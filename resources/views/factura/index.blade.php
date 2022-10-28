@@ -165,7 +165,9 @@
 												<div class='btn-group  btn-group-sm' role='group' aria-label='...'>
 													<button class='btn btn-primary' data-modulo="{{$factura->modulo->nombre}}" data-id="{{$factura->id}}" data-toggle="modal" data-target="#show-modal"><span class='glyphicon glyphicon-eye-open'></span></button>
 													<a class='btn btn-warning' href='{{url('facturacion/'.$factura->modulo->nombre.'/factura/'.$factura->id.'/edit')}}'><span class='glyphicon glyphicon-pencil'></span></a>
-													@if($factura->estado != 'E' && $factura->cobros()->count() == 0)<a class='btn btn-success' href='{{action('FacturaController@exonerate', [$factura->id])}}'><span class='glyphicon glyphicon-piggy-bank'></span></a> @endif
+													@permission('facturacion.exonerar')
+														@if($factura->estado != 'E' && $factura->cobros()->count() == 0)<a class='btn btn-success' href='{{action('FacturaController@exonerate', [$factura->id])}}'><span class='glyphicon glyphicon-piggy-bank'></span></a> @endif
+													@endpermission
 													<button class='btn btn-danger eliminar-factura-btn' data-id="{{$factura->id}}"><span class='glyphicon glyphicon-remove'></span></button>
 													<a target="_blank" class='btn btn-default' href='{{action('FacturaController@getPrint', [$modulo->nombre, $factura->id])}}'><span class='glyphicon glyphicon-print'></span></a>
 													@if($factura->deleted_at != null) <button class='btn btn-info resturar-factura-btn' data-id="{{$factura->id}}"><span class='glyphicon glyphicon-refresh'></span></button> @endif
