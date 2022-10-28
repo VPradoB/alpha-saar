@@ -127,7 +127,7 @@
 												<td   style="vertical-align: middle; width: 70px" class="text-center carga-bs" align="right"> </td>
 												<td   style="vertical-align: middle; width: 70px" class="text-center" align="center" align="right">{{ ($factura->deleted_at == null)?   $factura->estado == 'E' ? '02-exo': '01-reg' :'03-anu' }}</td>
 												<td   style="vertical-align: middle; width: 70px" class="text-right jetway-bs" align="right"> </td>
-												@if($factura->deleted_at == null)
+												@if($factura->deleted_at == null && $factura->estado != 'E')
 													<td   style="vertical-align: middle; width: 100px" class="text-right totalVentasConIva" align="right">{{$traductor->format($factura->total)}}</td>
 													<td   style="vertical-align: middle; width: 100px" class="text-right ventasNoGravadas" align="right">{{($factura->iva == 0.0)?$traductor->format($factura->total):''}}</td>
 													<td   style="vertical-align: middle; width: 100px" class="text-right baseImponible {{($factura->iva == 0)?'':round((($factura->iva)*100)/$factura->subtotal)}}" align="right">{{($factura->iva == 0.00)?'':$traductor->format($factura->subtotal)}}</td>
