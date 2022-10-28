@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Requests\FacturaRequest;
 use App\Http\Controllers\Controller;
 use \App\Factura;
+use App\Modulo;
 use App\MontosFijo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -678,4 +679,15 @@ class FacturaController extends Controller {
          return $modulos;
     }
 
+    public function exonerate($factura)
+    {
+        $factura = Factura::find($factura);
+        $modulo = $factura->modulo;
+        $moduloExoneradas = Modulo::where('nombre', 'EXONERADAS')
+            ->where('aeropuerto_id', session('aeropuerto')->id)->first();
+        $factura->estado = 'E';
+        $factura->modulo_id = $moduloExoneradas->id;
+        $factura->push();
+        return redirect('/facturacion/'. $modulo->nombre .'/factura');
+    }
 }

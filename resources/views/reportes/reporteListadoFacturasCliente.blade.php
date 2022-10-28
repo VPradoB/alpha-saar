@@ -79,6 +79,7 @@
                             "C" => "Cobradas",
                             "P" => "Por Cobrar",
                             "A" => "Anuladas",
+                            "E" => "Exoneradas",
                             "V" => "Vencidas"
                             ], isset($estatus)?$estatus:null, ["class"=> "form-control", "autocomplete" => "off"]) !!}
                         </div>

@@ -38,7 +38,7 @@
 							<td colspan="5">No hay facturas registradas en este módulo</td>
 						</tr>
 						@endif
-						@foreach($modulo->facturas()->where('estado', 'P')->orderBy('id', 'DESC')->limit(15)->get() as $factura)
+						@foreach($modulo->facturas()->where('estado', 'P')->orWhere('estado', 'E')->orderBy('id', 'DESC')->limit(15)->get() as $factura)
 						<tr>
 							<td>{{$factura->nFacturaPrefix}}-{{$factura->nFactura}}</td>
 							<td>{{$factura->nControlPrefix}}-{{$factura->nControl}}</td>

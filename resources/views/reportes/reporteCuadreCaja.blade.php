@@ -135,7 +135,42 @@
 											@endforeach
 					                        <tr class="bg-gray" align="center">
 					                        	<td colspan="7" align="right" class="text-right"><strong>TOTAL ANULADO</strong></td>
-					                        	<td align="right"><strong>{{$traductor->format($facturasAnuladasTotal)}}</strong></td>			                        
+					                        	<td align="right"><strong>{{$traductor->format($facturasAnuladasTotal)}}</strong></td>
+					                        </tr>
+										</tbody>
+									@endif
+									@if($facturasExoneradas->count()>0)
+										<tr class="bg-primary" >
+											<th class="text-center" colspan="8" >
+												FACTURAS EXONERADAS
+											</th>
+										</tr>
+										<tr class="bg-primary" >
+											<th class="text-center" align="center" style="width: 100px">FECHA</th>
+											<th class="text-center" align="center" style="width: 100px">Nro. CONTROL</th>
+											<th class="text-center" align="center" style="width: 100px">Nro. DOSA</th>
+											<th class="text-center" align="center" style="width: 100px">Nro. FACTURA</th>
+											<th class="text-center" align="center" style="width: 400px">CLIENTE</th>
+											<th class="text-center" align="center" style="width: 100px">COND. PAGO</th>
+											<th class="text-center" align="center" style="width: 100px">OBSERVACIONES</th>
+											<th class="text-center" align="center" style="width: 150px">MONTO</th>
+										</tr>
+										<tbody>
+											@foreach($facturasExoneradas as $facturasExonerada)
+												<tr title="{{$facturasExonerada->fecha}}" align="center">
+													<td class="text-center" align="center" style="width: 100px">{{$facturasExonerada->fecha}}</td>
+													<td class="text-center" align="center" style="width: 100px">{{$facturasExonerada->nControlPrefix}}-{{$facturasExonerada->nControl}}</td>
+													<td class="text-center" align="center" style="width: 100px">{{$facturasExonerada->nroDosa}}</td>
+													<td class="text-center" align="center" style="width: 100px">{{$facturasExonerada->nFacturaPrefix}}-{{$facturasExonerada->nFactura}}</td>
+													<td class="text-left" align="left" style="width: 400px">{{$facturasExonerada->cliente->nombre}}</td>
+													<td class="text-center" align="center"   style="width: 100px">{{$facturasExonerada->condicionPago}}</td>
+													<td class="text-left" align="left"   style="width: 100px">{{$facturasExonerada->comentario}}</td>
+													<td class="text-right" align="right"  style="width: 150px">{{$traductor->format($facturasExonerada->total)}}</td>
+												</tr>
+											@endforeach
+					                        <tr class="bg-gray" align="center">
+					                        	<td colspan="7" align="right" class="text-right"><strong>TOTAL EXONERADO</strong></td>
+					                        	<td align="right"><strong>{{$traductor->format($facturasExoneradasTotal)}}</strong></td>
 					                        </tr>
 										</tbody>
 									@endif
@@ -172,6 +207,41 @@
 					                        	<td colspan="7" align="right" class="text-right"><strong>TOTAL FACTURAS MANUALES</strong></td>
 					                        	<td align="right"><strong>{{$traductor->format($facturasManualesTotal)}}</strong></td>			                        
 					                        </tr>
+																                        @if($facturasManualesAnuladas->count()>0)
+												<tr class="bg-primary" >
+													<th class="text-center" colspan="8" >
+														FACTURAS MANUALES EXONERADAS
+													</th>
+												</tr>
+												<tr class="bg-primary" >
+													<th class="text-center" align="center" style="width: 100px">FECHA</th>
+													<th class="text-center" align="center" style="width: 100px">Nro. CONTROL</th>
+													<th class="text-center" align="center" style="width: 100px">Nro. DOSA</th>
+													<th class="text-center" align="center" style="width: 100px">Nro. FACTURA</th>
+													<th class="text-center" align="center" style="width: 400px">CLIENTE</th>
+													<th class="text-center" align="center" style="width: 100px">COND. PAGO</th>
+													<th class="text-center" align="center" style="width: 100px">OBSERVACIONES</th>
+													<th class="text-center" align="center" style="width: 150px">MONTO</th>
+												</tr>
+												<tbody>
+													@foreach($facturasManualesExoneradas as $facturaExonerada)
+														<tr title="{{$facturaAnulada->fecha}}" align="center">
+															<td class="text-center" align="center" style="width: 100px">{{$facturaExonerada->fecha}}</td>
+															<td class="text-center" align="center" style="width: 100px">{{$facturaExonerada->nControlPrefix}}-{{$facturaExonerada->nControl}}</td>
+															<td class="text-center" align="center" style="width: 100px">{{$facturaExonerada->nroDosa}}</td>
+															<td class="text-center" align="center" style="width: 100px">{{$facturaExonerada->nFacturaPrefix}}-{{$facturaExonerada->nFactura}}</td>
+															<td class="text-left" align="left" style="width: 400px">{{$facturaExonerada->cliente->nombre}}</td>
+															<td class="text-center" align="center"   style="width: 100px">{{$facturaExonerada->condicionPago}}</td>
+															<td class="text-left" align="left"   style="width: 100px">{{$facturaExonerada->comentario}}</td>
+															<td class="text-right" align="right"  style="width: 150px">{{$traductor->format($facturaExonerada->total)}}</td>
+														</tr>
+													@endforeach
+							                        <tr class="bg-gray" align="center">
+							                        	<td colspan="7" align="right" class="text-right"><strong>TOTAL ANULADO</strong></td>
+							                        	<td align="right"><strong>{{$traductor->format($facturasManualesExoneradasTotal)}}</strong></td>			                        
+							                        </tr>
+												</tbody>
+											@endif
 					                        @if($facturasManualesAnuladas->count()>0)
 												<tr class="bg-primary" >
 													<th class="text-center" colspan="8" >

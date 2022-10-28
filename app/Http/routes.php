@@ -184,6 +184,7 @@ Route::group(['prefix' => 'facturacion/{modulo}/'], function () {
     Route::get('automatica', 'FacturaController@automatica');
     Route::get('restaurar/{id}', 'FacturaController@restore');
     Route::resource('factura', 'FacturaController');
+    Route::get('exonerate', 'FacturaController@exonerate');
 });
 
 

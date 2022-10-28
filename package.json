@@ -1,5 +1,8 @@
 {
   "private": true,
+  "scripts": {
+    "dev": "sudo php5.6 artisan serve"
+  },
   "devDependencies": {
     "gulp": "^3.8.8",
     "laravel-elixir": "^1.0.0"
