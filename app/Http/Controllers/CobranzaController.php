@@ -374,16 +374,25 @@ return ["success"=>1, "impresion" => $impresion];
 
         $facturas=$request->get('facturas');
         if(isset($pagos)){
+	    
             $cobro->pagos()->whereNotIn('id', array_column($pagos, 'id'))->delete();
             foreach($pagos as $pago){
-                $pagoAttrs=[
-                    "tipo" => $pago['tipo'],
-                    "fecha" => $pago['fecha'],
-                    "banco_id" => $pago['banco_id'],
-                    "cuenta_id" => $pago['cuenta_id'],
-                    "ncomprobante" => $pago['ncomprobante'],
-                    "monto" => $pago['monto']+0,
-                ];
+                if($pago['tipo'] != 'DAC'){ 
+		    $pagoAttrs=[
+                    	"tipo" => $pago['tipo'],
+                    	"fecha" => $pago['fecha'],
+                    	"banco_id" => $pago['banco_id'],
+                    	"cuenta_id" => $pago['cuenta_id'],
+                    	"ncomprobante" => $pago['ncomprobante'],
+                    	"monto" => $pago['monto']+0,
+                    ];
+		}else{
+		    $pagoAttrs=[
+		    	"tipo" => $pago['tipo'],
+		    	"fecha" => $pago['fecha'],
+			"monto" => $pago['monto']
+		    ];
+		}
                 if(array_key_exists('id', $pago)){
                     $pagoIds[]=$pago['id'];
                     $pago=$cobro->pagos()->find($pago['id']);
@@ -393,8 +402,6 @@ return ["success"=>1, "impresion" => $impresion];
                 }
             }
         }
-
-
 
         foreach($facturas as $factura){
             $factAttrs=[
