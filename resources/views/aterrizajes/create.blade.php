@@ -144,7 +144,7 @@
 										<select name="piloto_id" id="piloto_id" class="form-control piloto">
 											<option value="">--Seleccione Piloto--</option>
 											@foreach ($pilotos as $piloto)
-											<option data-ci="{{$piloto->documento_identidad}}" value="{{$piloto->id}}"> {{$piloto->nombre}}</option>
+											<option data-ci="{{$piloto->documento_identidad}}" value="{{$piloto->id}}">{{$piloto->documento_identidad}} {{$piloto->nombre}}</option>
 											@endforeach
 										</select>
 									</div><!-- /.input group -->
