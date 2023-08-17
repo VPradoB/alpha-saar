@@ -202,7 +202,7 @@ class FacturaController extends Controller {
     public function main($moduloNombre){
         $moduloNombre     =($moduloNombre=="Todos")?"%":$moduloNombre;
         $modulos          =$this->getModulos($moduloNombre);
-        $anuladas         = Factura::onlyTrashed()->orderBy('id', 'DESC')->limit(15)->get();
+        $anuladas         = Factura::onlyTrashed()->where('aeropuerto_id', session('aeropuerto')->id)->orderBy('id', 'DESC')->limit(15)->get();
         return view('factura.main', compact('modulos', 'facturasManuales', 'anuladas'));
     }
 
@@ -412,6 +412,9 @@ class FacturaController extends Controller {
                     $factura->nFactura = $request->nFactura;
                     $dicom = MontosFijo::where('aeropuerto_id', session('aeropuerto')->id)->first()->dolar_oficial;
                     $factura->dicom = $dicom;
+                    $factura->monto_eq = $factura->total / $dicom;
+                    //unidad por defecto el dolar
+                    $factura->unidad_id = 2;
                     $factura->save();
                     /*
                     if ($cliente && $cliente->isEnvioAutomatico == true && $cliente->email != "") {

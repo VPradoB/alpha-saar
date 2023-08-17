@@ -298,13 +298,23 @@
 <tr><td colspan="10" ></td></tr>
 <tr>
 <td colspan="6">
-<strong>DESCRIPCIÓN: </strong> 
 </td>
 <td colspan="2" style="border-bottom: 1px solid black;border-top: 1px solid black;border-left: 1px solid black;">
 <strong>TOTAL FACTURADO</strong>
 </td>
 <td colspan="2" style="border-bottom: 1px solid black;border-top: 1px solid black;border-right: 1px solid black;text-align:left" >
 <strong> Bs. </strong> {{$traductor->format($factura->total)}}  
+</td>
+</tr>
+<tr>
+<td colspan="6">
+<strong>DESCRIPCIÓN: </strong> 
+</td>
+<td colspan="2" style="border-bottom: 1px solid black;border-top: 1px solid black;border-left: 1px solid black;">
+<strong>EQUIVALENTE</strong>
+</td>
+<td colspan="2" style="border-bottom: 1px solid black;border-top: 1px solid black;border-right: 1px solid black;text-align:left" >
+<strong> $.  </strong> {{$traductor->format($factura->monto_eq)}}  
 </td>
 </tr>
 </table>

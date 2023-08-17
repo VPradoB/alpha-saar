@@ -2256,8 +2256,7 @@ class ReporteController extends Controller
             } else {
                 $facturas->with('cobros')->where('facturas.estado', 'like', $estatus);
             }
-
-
+	
             //dd($facturas->toSql(), $facturas->getBindings());
             $facturas = $facturas->orderBy('fecha', 'ASC')->orderBy('nFactura', 'ASC')->get();
             $total    = $facturas->sum('total');

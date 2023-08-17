@@ -84,7 +84,7 @@
 @endforeach
 
 <tr> <td colspan="10">
-@for($i=2; $i<20-$factura->detalles->count();$i++)
+@for($i=2; $i<19-$factura->detalles->count();$i++)
 <br>
 @endfor
 </td></tr>
@@ -115,6 +115,15 @@
 </td>
 <td colspan="5" style="border-bottom: 1px solid black;border-top: 1px solid black;border-right: 1px solid black;text-align:right; font-weight: bold;" >
     <strong>Bs.  <span style="font-family: Courier, monospace; font-size: 12;"> {{$traductor->format($factura->total)}} </span> </strong>
+</td>
+</tr>
+<tr>
+<td colspan="3" ></td>
+<td colspan="2" style="border-bottom: 1px solid black;border-top: 1px solid black;border-left: 1px solid black;">
+    <strong>EQUIVALENTE</strong>
+</td>
+<td colspan="5" style="border-bottom: 1px solid black;border-top: 1px solid black;border-right: 1px solid black;text-align:right; font-weight: bold;" >
+    <strong>$.  <span style="font-family: Courier, monospace; font-size: 12;"> {{$traductor->format($factura->monto_eq)}} </span> </strong>
 </td>
 </tr>
 <tr>

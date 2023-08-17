@@ -1081,6 +1081,12 @@ class DespegueController extends Controller
         $diasVencimientoCred = \App\OtrasConfiguraciones::where('aeropuerto_id', session('aeropuerto')->id)->first()->diasVencimientoCred;
 
         $modulo_id = $modulo->id;
+        $monto = MontosFijo::where('aeropuerto_id', session('aeropuerto')->id)->first();
+
+        $factura->monto_eq = $factura->total / $monto->dolar_oficial;
+
+        //unidad por defecto el dolar
+        $factura->unidad_id = 2;
 
         $view = view('factura.facturaAeronautica.create', compact('factura', 'condicionPago', 'modulo_id', 'modulo', 'aplica_minimo_aterrizaje', 'aplica_minimo_estacionamiento', 'diasVencimientoCred'))->with(['despegue_id' => $despegue->id]);
 
