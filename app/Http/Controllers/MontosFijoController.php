@@ -103,6 +103,7 @@ class MontosFijoController extends Controller {
 		$confGeneral                    =MontosFijo::find($id);
 		$confGeneral->unidad_tributaria =$request->input('unidad_tributaria');
 		$confGeneral->dolar_oficial     =$request->input('dolar_oficial');
+		// $confGeneral->petro_oficial     =$request->input('petro_oficial');
 		$confGeneral->euro_oficial			=$request->input('euro_oficial');
 
 
